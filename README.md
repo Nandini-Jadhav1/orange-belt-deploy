@@ -9,7 +9,6 @@ A fully on-chain live polling dApp built with **Soroban** smart contracts on **S
 
 ## 📹 Demo Video
 > https://youtu.be/mpj_mVS9BTk
-
 ## ✅ Tests Passing (7/7)
 ![Tests Passing](./test-results.png)
 
