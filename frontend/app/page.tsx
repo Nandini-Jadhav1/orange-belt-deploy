@@ -1,8 +1,7 @@
 "use client";
 
 import { useState, useCallback, useEffect, useRef } from "react";
-import { isConnected, requestAccess, getAddress, signTransaction } from "@stellar/freighter-api";
-import * as StellarSdk from "@stellar/stellar-sdk";
+import { isConnected, requestAccess, getAddress } from "@stellar/freighter-api";
 import { castVote, fetchResults } from "../lib/contract";
 
 // ── Types ─────────────────────────────────────────────────────────────────────
@@ -17,9 +16,6 @@ type VoteStatus   = "idle" | "signing" | "submitting" | "confirming" | "success"
 
 // ── Config ────────────────────────────────────────────────────────────────────
 
-const CONTRACT_ID        = process.env.NEXT_PUBLIC_CONTRACT_ID ?? "";
-const NETWORK_PASSPHRASE = StellarSdk.Networks.TESTNET;
-const HORIZON_URL        = "https://horizon-testnet.stellar.org";
 const CACHE_KEY          = "starvote_v1";
 const CACHE_TTL          = 30_000;
 
@@ -293,10 +289,10 @@ export default function Home() {
             <h3 className="text-xs font-semibold text-gray-400 uppercase tracking-widest mb-4">📋 Contract Info</h3>
             <div className="space-y-2 text-xs">
               {[
-                { label: "Contract ID",   value: CONTRACT_ID ? `${CONTRACT_ID.slice(0,8)}…` : "Not deployed", color: "text-cyan-400" },
+                { label: "Contract ID",   value: "LIVE_POLL", color: "text-cyan-400" },
                 { label: "Network",       value: "Stellar Testnet",  color: "text-emerald-400" },
                 { label: "Horizon URL",   value: "horizon-testnet",  color: "text-blue-400" },
-                { label: "Contract Func", value: "vote()",           color: "text-purple-400" },
+                { label: "Contract Func", value: "castVote()", color: "text-purple-400" },
                 { label: "Total Votes",   value: poll?.totalVotes?.toString() ?? "—", color: "text-white" },
               ].map(row => (
                 <div key={row.label} className="flex justify-between items-center">
